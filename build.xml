@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<project name="locale" basedir="." default="all">
+
+	<property file="properties/build.properties" />
+	<property environment="env"/>
+	
+	<!-- local dirs -->
+	<property name="src.dir" value="src"/>
+	<property name="web.dir" value="web"/>
+	<property name="lib.dir" value="lib"/>
+	
+	<property name="build.dir" value="build"/>
+	<property name="build.output.dir" value="build/output"/>
+
+	<!-- artifacts -->
+	<property name="module.name" value="locale"/>
+
+	<!-- classpaths -->
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+		<pathelement location="${build.dir}" />
+	</path>
+	
+	<target name="init">
+		<tstamp>
+			<format property="run.time" pattern="MM/dd/yyyy hh:mm aa" />
+		</tstamp>
+		<exec executable="hostname" outputproperty="host.name"/>
+		<echo message="Initializing ${module.name} build...${run.time}" />
+		<echo message="Build Directory - ${build.dir}" />
+		<echo message="Host name - ${host.name}" />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}/classes" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src.dir}" 
+			destdir="${build.dir}/classes" debug="true" fork="java$$javac.exe">
+			<classpath refid="compile.classpath" />
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="all" depends="clean,war-gen">
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" quiet="true"/>
+	</target>
+
+	<target name="war-gen" depends="compile">
+		<delete dir="${build.output.dir}" />
+
+		<mkdir dir="${build.output.dir}" />
+		<mkdir dir="${build.output.dir}/WEB-INF" />
+		<mkdir dir="${build.output.dir}/WEB-INF/lib" />
+		<mkdir dir="${build.output.dir}/WEB-INF/classes"/>
+		
+		
+		
+		<copy todir="${build.output.dir}/WEB-INF/classes">
+			<fileset dir="${build.dir}/classes">
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+		
+		
+		
+		
+		<!--copy the displaytag jar in web-inf/lib -->
+		<copy todir="${build.output.dir}/WEB-INF/lib" flatten="true">
+			<fileset dir="${lib.dir}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		
+		<copy todir="${build.output.dir}">
+		  	  <fileset dir="${web.dir}/jsp" includes="*.jsp"/>
+		</copy>
+		
+		<!--   -->	
+		<war destfile="${build.dir}/${module.name}.war" 
+			    webxml="${web.dir}/WEB-INF/web.xml"
+				basedir="${build.output.dir}" 
+				includes="**/*">
+		</war>
+	</target>
+</project>
