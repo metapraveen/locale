@@ -51,6 +51,8 @@ public class JDBCHelper {
 			return con;
 
 		} catch (SQLException e) {
+			System.out.println(e);
+			System.out.println("NO CON");
 			e.printStackTrace();
 			return null;
 		}

@@ -26,10 +26,7 @@ public class RegisterServlet extends HttpServlet implements Constants {
 	private static final Logger lgr = LoggerFactory.getLogger(RegisterServlet.class);
 	//private static Logger lgr = Logger.getLogger("com.tra.RegisterServlet");
 
-	public RegisterServlet() {
-		super();
-
-	}
+	
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -44,12 +41,20 @@ public class RegisterServlet extends HttpServlet implements Constants {
 		RequestDispatcher rd = null;
 		User usr = new User();
 		RegisterService rsr = new RegisterService();
+		System.out.println("here  ");
+		System.out.println(request.getParameter("op"));
 		if (request.getParameter("op") == null) {
-			lgr.trace("Hello World!");
-			lgr.debug("How are you today?");
-			lgr.info("I am fine.");
-			lgr.warn("I love programming.");
-			lgr.error("I am programming.");
+			try{
+				lgr.trace("Hello World!");
+				lgr.debug("How are you today?");
+				lgr.info("I am fine.");
+				lgr.warn("I love programming.");
+				lgr.error("I am programming.");
+			}catch (Exception e) {
+				System.out.println("logging error");
+				System.out.println(e);
+			}
+			
 			request.setAttribute("listOfUsers", rsr.getUsers());
 			rd = request.getRequestDispatcher("ListUsers.jsp");
 			rd.forward(request, response);
@@ -59,8 +64,9 @@ public class RegisterServlet extends HttpServlet implements Constants {
 					: request.getParameter("userId")));
 			usr.setFname(request.getParameter("fName"));
 			usr.setLname(request.getParameter("lName"));
+			rsr.saveUser(usr);
 			String httpResponse = "";
-			try {
+			/*try {
 				String url = "http://10.1.1.219:8080/locale/JAXBUtils";
 				String xml = JAXBHelper.marshal(usr);
 				Map<String, String> params = new HashMap<String, String>();
@@ -83,7 +89,7 @@ public class RegisterServlet extends HttpServlet implements Constants {
 			}
 			catch(Exception e){
 			//	lgr.warn("Could not send the email", e);
-			}
+			}*/
 			// handle error condn here
 			request.setAttribute("listOfUsers", rsr.getUsers());
 			rd = request.getRequestDispatcher("ListUsers.jsp");

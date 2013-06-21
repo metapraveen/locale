@@ -53,17 +53,9 @@
 				if(fname == "" || fname == null || lname == "" || lname == null){
 					alert("Input field cannot be null");
 				}
-				if(checkLanguage()){
-					alert("Success");
-				}
-				if(checkField()){
 				document.userForm.action="RegisterServlet";
 				document.userForm.op.value="save";
 				document.userForm.submit();
-				}
-				else{
-					alert("Invalid Inputs");
-				}
 				}
 		
 			function updateUser(){

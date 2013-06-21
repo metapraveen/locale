@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.6.6 .jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/d/Tomcat 7/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/classes/logback .xml"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
