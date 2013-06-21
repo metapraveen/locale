@@ -5,7 +5,6 @@
 	<classpathentry kind="lib" path="lib/commons-codec-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-httpclient-3.0-rc4.jar"/>
 	<classpathentry kind="lib" path="lib/commons-httpclient-3.0.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="lib/jstl.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-3.0.15-ga-bin.jar"/>
 	<classpathentry kind="lib" path="lib/standard.jar"/>
@@ -17,6 +16,5 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.6.6 .jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/d/Tomcat 7/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/classes/logback .xml"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

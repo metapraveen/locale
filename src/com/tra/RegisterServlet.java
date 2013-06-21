@@ -35,6 +35,8 @@ public class RegisterServlet extends HttpServlet implements Constants {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("LOGBACK FILE: " + ClassLoader.getSystemResource("logback.xml"));
 		ResourceBundle rb = ResourceBundle.getBundle("com.resource.MessageResources", request.getLocale());
 		Locale locale = request.getLocale();
 		request.setCharacterEncoding("UTF-8");
