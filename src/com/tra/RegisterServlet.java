@@ -46,16 +46,15 @@ public class RegisterServlet extends HttpServlet implements Constants {
 		System.out.println("here  ");
 		System.out.println(request.getParameter("op"));
 		if (request.getParameter("op") == null) {
-			try{
+			for (int i = 0; i < 20; i++) {
 				lgr.trace("Hello World!");
 				lgr.debug("How are you today?");
 				lgr.info("I am fine.");
 				lgr.warn("I love programming.");
 				lgr.error("I am programming.");
-			}catch (Exception e) {
-				System.out.println("logging error");
-				System.out.println(e);
 			}
+				
+			
 			
 			request.setAttribute("listOfUsers", rsr.getUsers());
 			rd = request.getRequestDispatcher("ListUsers.jsp");
@@ -114,6 +113,7 @@ public class RegisterServlet extends HttpServlet implements Constants {
 			rd = request.getRequestDispatcher("ListUsers.jsp");
 			rd.forward(request, response);
 		} else if (request.getParameter("op").equals("add")) {
+			lgr.debug("Adding user");
 			request.setAttribute("op", "add");
 			rd = request.getRequestDispatcher("AddEditUsers.jsp");
 			rd.forward(request, response);

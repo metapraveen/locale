@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
 
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">   
     <layout class="ch.qos.logback.classic.PatternLayout">
-      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -------- %msg%n</Pattern>
+      <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} --------> %msg%n</Pattern>
     </layout>
-  </appender>
+  </appender>p
   
-  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-	<file>/d/locale.log</file>
-    	<layout class="ch.qos.logback.classic.PatternLayout">
-     		 <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-    	</layout>
- </appender>
+ 
+<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    
+    
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>/d/logs/%d{yyyy-MM-dd, aux}/logFile.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+		
+		<timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>5kb</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+  
+  </appender> 
+  
   
   <logger name="com.tra" level="TRACE"/>
   
 
   <root level="debug">
    <appender-ref ref="FILE" />
+   
     <appender-ref ref="STDOUT" />   
   </root>
 </configuration>

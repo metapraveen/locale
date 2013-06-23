@@ -59,11 +59,7 @@
 		<mkdir dir="${build.output.dir}/WEB-INF/classes"/>
 		
 		
-		<copy todir="${build.output.dir}/WEB-INF">
-			<fileset dir="${resources.dir}">
-				<include name="**/*.xml" />
-			</fileset>
-		</copy>
+		
 		
 		<copy todir="${build.output.dir}/WEB-INF/classes">
 			<fileset dir="${build.dir}/classes">

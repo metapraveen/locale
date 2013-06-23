@@ -27,7 +27,7 @@
 
 	<servlet-mapping>
 		<servlet-name>RegisterServlet</servlet-name>
-		<url-pattern>/welcome</url-pattern>
+		<url-pattern>/RegisterServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DisplayServlet</servlet-name>
