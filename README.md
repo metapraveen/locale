@@ -1,2 +1,4 @@
 # locale
-project to test slf4j
+
+
+new line added to readme ( in master ) 
